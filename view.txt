@@ -15,3 +15,21 @@ tableModel.getDataVector().removeAllElements();
           }catch(SQLException e){
               System.out.print(e);
           }
+
+
+
+
+
+
+
+
+
+
+
+
+
+tableModel = new DefaultTableModel();
+        jTable1.setModel(tableModel);
+        tableModel.addColumn("name");
+        tableModel.addColumn("classname");
+        viewData();
