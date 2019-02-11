@@ -1,0 +1,17 @@
+tableModel.getDataVector().removeAllElements();
+       tableModel.fireTableDataChanged();
+       
+       Connection connection = database.getConnection();
+       String query = "Select * from roles";
+       try{
+            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
+            ResultSet result = preparedStatement.executeQuery();
+            while(result.next()){
+                Object[] o = new Object[2];
+                o[0]     = result.getString("name");
+                o[1]     = result.getString("classname");
+                tableModel.addRow(o);
+            }
+          }catch(SQLException e){
+              System.out.print(e);
+          }
