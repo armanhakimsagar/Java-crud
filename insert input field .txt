@@ -1,0 +1,55 @@
+* right click on input field. get variable name
+
+* in action method of button get input field data:
+
+  String name = jTextField1.getText(); // variable name. get text
+
+
+
+
+String name = jTextField1.getText();
+        String classname = jTextField2.getText();
+        
+        if(name.equals("")){
+            JOptionPane.showMessageDialog(this,"Please insert user name");
+        }
+        if(classname.equals("")){
+            JOptionPane.showMessageDialog(this,"Please insert class name");
+        }else{
+          try{
+            Connection connection = database.getConnection();
+            String query = "INSERT INTO roles (name,classname) VALUES (?, ?)";
+            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, classname);
+            
+            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "inserted successfully");
+          }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, "inserted not successfully");
+            System.out.print(e);
+          }
+        }
+
+
+
+_____________________________
+
+
+update:
+
+
+
+String query = "UPDATE roles SET name=? WHERE classname=?";
+            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, classname);
+            
+            preparedStatement.executeUpdate();
+
+
+______________________________
+
+
